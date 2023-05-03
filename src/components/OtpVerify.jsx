@@ -1,4 +1,6 @@
-import { BsFillShieldLockFill, BsTelephoneFill } from 'react-icons/bs';
+import {
+  BsFillShieldLockFill,
+} from 'react-icons/bs';
 import { CgSpinner } from 'react-icons/cg';
 
 import OtpInput from 'otp-input-react';
@@ -70,27 +72,27 @@ const OtpVerify = () => {
   }
 
   return (
-    <section className="bg-emerald-500 flex items-center justify-center h-screen">
+    <section className="bg-yellow-500 flex items-center justify-center h-screen">
       <div>
         <Toaster toastOptions={{ duration: 4000 }} />
         <div id="recaptcha-container"></div>
         {user ? (
-          <h2 className="text-center text-white font-medium text-2xl">
+          <h2 className="text-center text-black font-medium text-2xl">
             👍Login Success
           </h2>
         ) : (
           <div className="w-80 flex flex-col gap-4 rounded-lg p-4">
-            <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
-              Welcome to <br /> CODE A PROGRAM
+            <h1 className="text-center leading-normal text-black font-medium text-2xl mb-6">
+              REGISTER YOURSELF
             </h1>
             {showOTP ? (
               <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
+                <div className="text-black-500 w-fit mx-auto p-4">
                   <BsFillShieldLockFill size={30} />
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-xl text-white text-center"
+                  className="font-bold text-xl text-black text-center"
                 >
                   Enter your OTP
                 </label>
@@ -105,7 +107,7 @@ const OtpVerify = () => {
                 ></OtpInput>
                 <button
                   onClick={onOTPVerify}
-                  className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
+                  className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-black rounded"
                 >
                   {loading && (
                     <CgSpinner size={20} className="mt-1 animate-spin" />
@@ -115,31 +117,29 @@ const OtpVerify = () => {
               </>
             ) : (
               <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                  <BsTelephoneFill size={30} />
+                <div className="text-black-500 w-fit mx-auto p-4">
+                  <BsFillShieldLockFill size={30} />
                 </div>
-                <label
-                  htmlFor=""
-                  className="font-bold text-xl text-white text-center"
-                >
+                <label className="block text-gray-700 text-sm font-bold mb-2">
                   Your Aadhar number
+                  <input
+                    type="text"
+                    placeholder="Enter Aadhaar Number"
+                    value={aadhaarNumber}
+                    onChange={(e) => setAadhaarNumber(e.target.value)}
+                    className="shadow appearance-none border rounded w-full  py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    pattern="[2-9]{1}[0-9]{11}"
+                    required
+                  />
                 </label>
-                <input
-                  type="text"
-                  placeholder="Enter Aadhaar Number"
-                  value={aadhaarNumber}
-                  onChange={(e) => setAadhaarNumber(e.target.value)}
-                  pattern="[2-9]{1}[0-9]{11}"
-                  required
-                />
-
-                <label
-                  htmlFor=""
-                  className="font-bold text-xl text-white text-center"
-                >
+                <label className="block text-gray-700 text-sm font-bold mb-2">
                   Verify your phone number
+                  <PhoneInput
+                    country="in"
+                    value={ph}
+                    onChange={setPh}
+                  />
                 </label>
-                <PhoneInput country={'in'} value={ph} onChange={setPh} />
                 <button
                   onClick={onSignup}
                   className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
